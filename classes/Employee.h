@@ -4,12 +4,14 @@
 #include<string>
 #include"Date.h"
 
-Class Employee{
+class Employee{
+
     private: 
         string name;
         float salary;
         Date admissionDate;
-}
+        
+};
 
 
 
