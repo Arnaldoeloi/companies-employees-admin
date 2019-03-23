@@ -8,12 +8,21 @@ Date::Date(const int& d, const int& m, const int& y){
     month_  =   m;
     year_   =   y;
 }
+/*
+Small adition to Oedegaard class: copy constructor
+*/
+Date::Date(Date& date){
+    day_ = date.day();
+    month_ = date.month();
+    year_ = date.year();
+}
 
 Date::Date(){
     year_  = 0;
     month_ = 0;
     day_   = 0;
 }
+
 
 int Date::day() const {
     return day_;
@@ -65,6 +74,14 @@ bool operator == (const Date& d1, const Date& d2){
 
 bool operator !=(const Date& d1, const Date& d2){
     return !(d1==d2);
+}
+
+Date Date::operator-(int days){
+    Date auxDate;
+    for(int i=0; i<days; i++){
+        auxDate=previous_date(*this);
+    }
+    return auxDate;
 }
 
 bool operator < (const Date& d1, const Date& d2){

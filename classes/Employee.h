@@ -2,6 +2,7 @@
 #define EMPLOYEE_H
 
 #include<string>
+#include<iostream>
 #include"Date.h"
 
 class Employee{
@@ -17,14 +18,17 @@ class Employee{
 
         ~Employee();
 
-        void getName();
+        string getName();
         void setName(string name);
 
-        void getSalary();
-        void setSalary(float salary);
+        float getSalary();
+        Date getAdmissionDate();
         
-        friend ostream& operator<< (ostream &strteam, Employee& const employee);
-        friend ostream& operator== (ostream &strteam, Employee& const employee);
+        void setAdmissionDate(Date& date);
+        void setSalary(float salary);
+
+        friend ostream & operator << (ostream &stream, Employee& const employee);
+        bool operator == (Employee& const employee);
 
         static int N_EMPLOYEES;
 };

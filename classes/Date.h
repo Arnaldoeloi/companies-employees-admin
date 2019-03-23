@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class Date{
         int day_;
     public:
         Date();
+        Date(Date& date);
         Date(const int& d, const int& m, const int& y);
 
         bool valid(void) const;
@@ -32,6 +34,7 @@ class Date{
         Date operator ++(int);
         Date operator --();
         Date operator --(int);
+        Date operator - (int days);
 };
 
 bool operator == (const Date&, const Date&);
