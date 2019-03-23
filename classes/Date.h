@@ -8,7 +8,6 @@
 #include <string>
 #include <ctime>
 
-using namespace std;
 
 class Date{
     protected:
@@ -44,6 +43,6 @@ bool operator > (const Date&, const Date&);
 bool operator <=(const Date&, const Date&);
 bool operator >=(const Date&, const Date&);
 
-ostream& operator << (ostream& os, const Date& d);
+std::ostream& operator << (std::ostream& os, const Date& d);
 
 #endif

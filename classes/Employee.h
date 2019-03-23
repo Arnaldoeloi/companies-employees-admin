@@ -1,25 +1,27 @@
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
 
-#include<string>
 #include<iostream>
+#include<string>
 #include"Date.h"
 
 class Employee{
 
     private: 
-        string name_;
+        std::string name_;
         float salary_;
         Date admissionDate_;
 
     public:
-        Employee(string name, float salary, Date admissionDate);
+        Employee(std::string name, float salary, Date& admissionDate);
+        Employee(std::string name, float salary, std::string admissionDate);
+        
         Employee(const Employee& e);
 
         ~Employee();
 
-        string getName();
-        void setName(string name);
+        std::string getName();
+        void setName(std::string name);
 
         float getSalary();
         Date getAdmissionDate();
@@ -27,8 +29,8 @@ class Employee{
         void setAdmissionDate(Date& date);
         void setSalary(float salary);
 
-        friend ostream & operator << (ostream &stream, Employee& const employee);
-        bool operator == (Employee& const employee);
+        friend std::ostream & operator << (std::ostream &stream, Employee& employee);
+        bool operator == (Employee& employee);
 
         static int N_EMPLOYEES;
 };

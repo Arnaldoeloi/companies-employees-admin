@@ -1,23 +1,32 @@
 #include "Employee.h"
 
-Employee::Employee(string name, float salary, Date admissionDate){
+Employee::Employee(std::string name, float salary, Date& admissionDate){
     name_=name;
     salary_=salary;
     Date admissionDate_(admissionDate);
 }
 
-Employee::Employee(const Employee::Employee& e){
+Employee::Employee(std::string name, float salary, std::string admissionDate){
+    name_=name;
+    salary_=salary;
+    
+    Date admissionDate_(std::stoi(admissionDate.substr(0,1), nullptr),std::stoi(admissionDate.substr(3,4), nullptr),std::stoi(admissionDate.substr(6,7), nullptr));
+}
 
+Employee::Employee(const Employee& e){
+    name_= e.name_;
+    salary_=e.salary_;
+    admissionDate_=e.admissionDate_;
 }
 
 Employee::~Employee(){
     N_EMPLOYEES--;
 }
 
-string Employee::getName(){
+std::string Employee::getName(){
     return name_;
 }
-void Employee::setName(string name){
+void Employee::setName(std::string name){
     name_=name;
 }
 
@@ -37,18 +46,19 @@ void Employee::setSalary(float salary){
     salary_=salary;
 }
 
-ostream & operator << (ostream &stream, Employee& const employee){
-    stream<<"Name: "<<employee.getName()<<endl;
-    stream<<"Salary: "<<employee.getSalary()<<endl;
-    stream<<"Admission Date: "<<employee.getAdmissionDate()<<endl;
+std::ostream & operator << (std::ostream &stream, Employee& employee){
+    stream<<"Name: "<<employee.getName()<<std::endl;
+    stream<<"Salary: "<<employee.getSalary()<<std::endl;
+    stream<<"Admission Date: "<<employee.getAdmissionDate()<<std::endl;
+    return stream;
 }
 
-bool Employee::operator == (Employee& const employee){
+bool Employee::operator == (Employee& employee){
     /*
     Using only the name to validate is the correct way to approach 
     the problem, because salary and admissionDate could change in the same Employee.
     */
-    if(employee.getName()==this->getName()) return true;
+    if(employee.getName()==name_) return true;
     return false; 
 }
 

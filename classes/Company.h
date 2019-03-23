@@ -3,43 +3,44 @@
 
 #include<iostream>
 #include<string>
-#include<Employee.h>
+#include"Employee.h"
 #include<list>
 #include<algorithm>
 
 class Company{
 
     private:
-        string name_;
-        string CNPJ_;
-        list <Employee> employees_;
+        std::string name_;
+        std::string CNPJ_;
+        std::list <Employee> employees_;
 
         int n_employees_;
         int list_iterator;
     public:
-        Company(string name, string cnpj);
+        static int N_COMPANIES;
+        
+        Company(std::string name, std::string cnpj);
         ~Company();
 
-        static int N_COMPANIES;
 
-        void employ(Employee& e);
-        void fire(Employee& e);
+        void employ(Employee e);
+        void fire(Employee e);
         void raiseEveryoneSalaryBy(float percentage);
         void listAllEmployees();
         void listNewPersonnel();
         int countPersonnel();
 
-        string getName();
-        string getCNPJ();
+        std::string getName();
+        std::string getCNPJ();
         int getNumberOfEmployees();
-        list <Employee> getEmployees(); //return Employees list object
+        std::list <Employee> getEmployees(); //return Employees list object
 
-        void setName(string name);
-        void setCNPJ(string cnpj);
+        void setName(std::string name);
+        void setCNPJ(std::string cnpj);
 
         static float employeePerCompanyAvg();
 
-        friend ostream & operator << (ostream &stream, Company& const company);
+        friend std::ostream & operator << (std::ostream &stream, Company& company);
 
 };
 

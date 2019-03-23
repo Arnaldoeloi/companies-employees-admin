@@ -4,15 +4,13 @@
 #include "classes/Employee.h"
 #include "classes/Company.h"
 
-using namespace std;
-
+int N_EMPLOYEES=0;
+int N_COMPANIES=0;
 
 int main(){
-    Employee::N_EMPLOYEES=0;
-    Company::N_COMPANIES=0;
     
-    
-
+    // Employee e1("Arnaldo Barbosa Eloi de Souza", 1050.00, "10/02/2017" );
+    // cout<<e1;
 
     return 0;
 }

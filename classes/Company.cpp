@@ -6,20 +6,20 @@ Company::Company(std::string name, std::string cnpj){
 
     n_employees_=0;
 
-    N_COMPANIES++;
+    Company::N_COMPANIES++;
 };
 
 Company::~Company(){
-    N_COMPANIES--;
+    Company::N_COMPANIES--;
 };
 
-void Company::employ(Employee& e){
+void Company::employ(Employee e){
     employees_.push_back(e);
     n_employees_++;
 };
 
-void Company::fire(Employee& e){
-    for(list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+void Company::fire(Employee e){
+    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
         if(e == *ptr){
             employees_.erase(ptr);
             n_employees_--;
@@ -29,21 +29,21 @@ void Company::fire(Employee& e){
 };
 
 void Company::raiseEveryoneSalaryBy(float percentage){
-    for(list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
-        ptr->setSalary(ptr->getSalary * (percentage/100));
+    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+        ptr->setSalary(ptr->getSalary() * (percentage/100));
     }
 }
 
 void Company::listAllEmployees(){
-    for(list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
-        std::cout<<*ptr<<endl;
+    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+        std::cout<<*ptr<<std::endl;
     }
 }
 
 void Company::listNewPersonnel(){
-    for(list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
         if(ptr->getAdmissionDate()<ptr->getAdmissionDate()-90){
-            std::cout<<*ptr<<endl;
+            std::cout<<*ptr<<std::endl;
         }
     }
 }
@@ -53,42 +53,43 @@ int Company::getNumberOfEmployees(){
 }
 
 int Company::countPersonnel(){
-    return employees_.size;
+    return employees_.size();
 }
 
-string Company::getName(){
+std::string Company::getName(){
     return name_;
 }
 
-string Company::getCNPJ(){
+std::string Company::getCNPJ(){
     return CNPJ_;
 }
 
-list <Employee> Company::getEmployees(){
+std::list <Employee> Company::getEmployees(){
     return employees_;
 } 
 
-void Company::setName(string name){
+void Company::setName(std::string name){
     name_=name;
 }
 
-void Company::setCNPJ(string cnpj){
+void Company::setCNPJ(std::string cnpj){
     CNPJ_=cnpj;
 }
 
 
 float Company::employeePerCompanyAvg(){
-    return Employee::N_EMPLOYEES/N_COMPANIES;
+    return Employee::N_EMPLOYEES/Company::N_COMPANIES;
 }
 
 
-ostream & operator << (ostream &stream, Company& const company){
+std::ostream & operator << (std::ostream &stream, Company& company){
     stream<<"Name: ";
-    stream<<company.getName()<<endl;
+    stream<<company.getName()<<std::endl;
     stream<<"CNPJ: ";
-    stream<<company.getCNPJ()<<endl;
+    stream<<company.getCNPJ()<<std::endl;
     stream<<"Number of employees: ";
-    stream<<company.getNumberOfEmployees()<<endl;
+    stream<<company.getNumberOfEmployees()<<std::endl;
+    return stream;
 }
 
 

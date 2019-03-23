@@ -66,7 +66,7 @@ bool operator == (const Date& d1, const Date& d2){
     if(!d2.valid()){return false;};
     if((d1.day()==d2.day())
         && (d1.month()==d2.month())
-        && (d1.year==d2.year())) {
+        && (d1.year()==d2.year())) {
             return false;
         }
         return false;
@@ -76,13 +76,7 @@ bool operator !=(const Date& d1, const Date& d2){
     return !(d1==d2);
 }
 
-Date Date::operator-(int days){
-    Date auxDate;
-    for(int i=0; i<days; i++){
-        auxDate=previous_date(*this);
-    }
-    return auxDate;
-}
+
 
 bool operator < (const Date& d1, const Date& d2){
     if(!d1.valid()){ return false; };
@@ -130,6 +124,14 @@ inline Date previous_date(const Date& d){
     ndat = Date(31,12,(d.year()-1));    return ndat;
 };
 
+Date Date::operator-(int days){
+    Date auxDate;
+    for(int i=0; i<days; i++){
+        auxDate=previous_date(*this);
+    }
+    return auxDate;
+}
+
 Date Date::operator++(int){
     Date d = *this;
     *this = next_date(d);
@@ -157,7 +159,7 @@ inline long long_date(const Date& d){
     return -1;
 }
 
-ostream & operator << (ostream& os, const Date& d){
+std::ostream & operator << (std::ostream& os, const Date& d){
     if(d.valid()){
         os<<" "<<long_date(d) << " "; 
     }else{
