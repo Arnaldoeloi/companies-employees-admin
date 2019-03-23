@@ -9,6 +9,8 @@ Employee::Employee(std::string name, float salary, Date& admissionDate){
     admissionDate_.set_year(admissionDate.year());
     admissionDate_.set_month(admissionDate.month());
     admissionDate_.set_day(admissionDate.day());
+
+    N_EMPLOYEES++;
 }
 
 Employee::Employee(std::string name, float salary, std::string admissionDate){
@@ -17,12 +19,15 @@ Employee::Employee(std::string name, float salary, std::string admissionDate){
     std::cout<<std::stoi(admissionDate.substr(0,2))<<std::endl<<std::stoi(admissionDate.substr(3,2))<<std::endl<<std::stoi(admissionDate.substr(6,4))<<std::endl<<std::endl;
     Date admissionDate_(std::stoi(admissionDate.substr(0,2)), std::stoi(admissionDate.substr(3,2)),std::stoi(admissionDate.substr(6,4)));
 
+    N_EMPLOYEES++;
 }
 
 Employee::Employee(const Employee& e){
     name_= e.name_;
     salary_=e.salary_;
     admissionDate_=e.admissionDate_;
+    
+    N_EMPLOYEES++;
 }
 
 Employee::~Employee(){

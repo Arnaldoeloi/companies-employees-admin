@@ -23,7 +23,7 @@ class Company{
         ~Company();
 
 
-        void employ(Employee e);
+        void employ(Employee& e);
         void fire(Employee e);
         void raiseEveryoneSalaryBy(float percentage);
         void listAllEmployees();

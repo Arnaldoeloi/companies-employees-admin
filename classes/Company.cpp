@@ -15,7 +15,8 @@ Company::~Company(){
     Company::N_COMPANIES--;
 };
 
-void Company::employ(Employee e){
+void Company::employ(Employee& e){
+    Employee::N_EMPLOYEES--; //workaround to couting duplicated Employees on employ
     employees_.push_back(e);
     n_employees_++;
 };

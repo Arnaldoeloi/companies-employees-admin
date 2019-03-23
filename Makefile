@@ -8,7 +8,7 @@ LFLAGS	 =
 
 all: $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
-
+	make run
 main.o: main.cpp     
 	$(CC) $(FLAGS) -c main.cpp
 
