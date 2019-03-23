@@ -1,5 +1,7 @@
 #include "Company.h"
 
+int Company::N_COMPANIES=0;
+
 Company::Company(std::string name, std::string cnpj){
     name_ = name;
     CNPJ_ = cnpj;

@@ -12,9 +12,9 @@ Date::Date(const int& d, const int& m, const int& y){
 Small adition to Oedegaard class: copy constructor
 */
 Date::Date(Date& date){
-    day_ = date.day();
-    month_ = date.month();
-    year_ = date.year();
+    day_ = date.day_;
+    month_ = date.month_;
+    year_ = date.year_;
 }
 
 Date::Date(){
@@ -45,6 +45,7 @@ void Date::set_year(const int& year){
 };
 
 bool Date::valid() const{
+
     if (year_ < 0) return false;
     if (month_>12 || month_< 1) return false;
     if (day_>31 || day_ < 1) return false;
@@ -161,9 +162,10 @@ inline long long_date(const Date& d){
 
 std::ostream & operator << (std::ostream& os, const Date& d){
     if(d.valid()){
-        os<<" "<<long_date(d) << " "; 
+        // os<<" "<<long_date(d) << " "; 
+        os<<d.day()<<"/"<<d.month()<<"/"<<d.year(); 
     }else{
-        os << "invalid date";
+        os << "Invalid date";
     };
     return os;
 }

@@ -1,16 +1,22 @@
 #include "Employee.h"
 
+int Employee::N_EMPLOYEES=0;
+
 Employee::Employee(std::string name, float salary, Date& admissionDate){
     name_=name;
     salary_=salary;
-    Date admissionDate_(admissionDate);
+
+    admissionDate_.set_year(admissionDate.year());
+    admissionDate_.set_month(admissionDate.month());
+    admissionDate_.set_day(admissionDate.day());
 }
 
 Employee::Employee(std::string name, float salary, std::string admissionDate){
     name_=name;
     salary_=salary;
-    
-    Date admissionDate_(std::stoi(admissionDate.substr(0,1), nullptr),std::stoi(admissionDate.substr(3,4), nullptr),std::stoi(admissionDate.substr(6,7), nullptr));
+    std::cout<<std::stoi(admissionDate.substr(0,2))<<std::endl<<std::stoi(admissionDate.substr(3,2))<<std::endl<<std::stoi(admissionDate.substr(6,4))<<std::endl<<std::endl;
+    Date admissionDate_(std::stoi(admissionDate.substr(0,2)), std::stoi(admissionDate.substr(3,2)),std::stoi(admissionDate.substr(6,4)));
+
 }
 
 Employee::Employee(const Employee& e){
@@ -48,7 +54,7 @@ void Employee::setSalary(float salary){
 
 std::ostream & operator << (std::ostream &stream, Employee& employee){
     stream<<"Name: "<<employee.getName()<<std::endl;
-    stream<<"Salary: "<<employee.getSalary()<<std::endl;
+    stream<<"Salary: R$ "<<employee.getSalary()<<std::endl;
     stream<<"Admission Date: "<<employee.getAdmissionDate()<<std::endl;
     return stream;
 }

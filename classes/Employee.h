@@ -6,6 +6,8 @@
 #include"Date.h"
 
 class Employee{
+    public:
+        static int N_EMPLOYEES;
 
     private: 
         std::string name_;
@@ -13,6 +15,7 @@ class Employee{
         Date admissionDate_;
 
     public:
+
         Employee(std::string name, float salary, Date& admissionDate);
         Employee(std::string name, float salary, std::string admissionDate);
         
@@ -32,7 +35,6 @@ class Employee{
         friend std::ostream & operator << (std::ostream &stream, Employee& employee);
         bool operator == (Employee& employee);
 
-        static int N_EMPLOYEES;
 };
 
 
