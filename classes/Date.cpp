@@ -1,3 +1,6 @@
+// File: Date.cpp
+// author: Bernt A Oedegaard.
+
 #include "Date.h"
 
 Date::Date(const int& d, const int& m, const int& y){
