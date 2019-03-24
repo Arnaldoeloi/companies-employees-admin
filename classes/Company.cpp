@@ -63,15 +63,17 @@ void Company::listNewPersonnel(){
     now.set_year(timePtr->tm_year+1900); //it is necessary to sum up 1900 to get current date
     now.set_month(timePtr->tm_mon+1);    //tm_mon starts at 0, so to get the current month we sum 1, since we don't have a month 0 
     now.set_day(timePtr->tm_mday);       //tm_mday returns the day of the month
-
-    std::cout<<now<<std::endl;
-    std::cout<<now-90<<std::endl;
     
-    // for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
-    //     if(ptr->getAdmissionDate() > (now - 90)){
-    //         std::cout<<*ptr<<std::endl;
-    //     }
-    // }
+    std::cout<<"Experience time"<<std::endl;
+    std::cout<<"==========||=========="<<std::endl;
+    std::cout<<std::endl;
+    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+        if( (ptr->getAdmissionDate()) > (now - 90)){
+            std::cout<<*ptr;
+            std::cout<<"Experience time ends in: "<<ptr->getAdmissionDate()+90<<std::endl;
+            std::cout<<std::endl;
+        }
+    }
 }
 
 int Company::getNumberOfEmployees(){

@@ -34,6 +34,7 @@ class Date{
         Date operator --();
         Date operator --(int);
         Date operator - (int);
+        Date operator + (int);
 };
 
 
