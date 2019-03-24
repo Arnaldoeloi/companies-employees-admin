@@ -3,9 +3,10 @@
 
 #include<iostream>
 #include<string>
-#include"Employee.h"
 #include<list>
 #include<algorithm>
+#include"Date.h"
+#include"Employee.h"
 
 class Company{
 
@@ -22,24 +23,43 @@ class Company{
         Company(std::string name, std::string cnpj);
         ~Company();
 
-
+        //Hire an employee and raise N_EMPLOYEES by one
         void employ(Employee& e);
-        void fire(Employee e);
-        void raiseEveryoneSalaryBy(float percentage);
-        void listAllEmployees();
-        void listNewPersonnel();
-        int countPersonnel();
 
-        std::string getName();
-        std::string getCNPJ();
+        //Fire an employee and subtract one from N_EMPLOYEES
+        void fire(Employee e);
+
+        //Iterate through and raise the salary of everyone in the company
+        void raiseEveryoneSalaryBy(float percentage);
+
+        //List all employees from the employees_ member list
+        void listAllEmployees();
+
+        //List only those hired in the last 90 days
+        void listNewPersonnel();
+
+        //Count the amount of employees in the company (local) 
         int getNumberOfEmployees();
+
+        //return the value of member name_
+        std::string getName();
+
+        //return the value of member CNPJ_
+        std::string getCNPJ();
+
+        //return the list of member employees_
         std::list <Employee> getEmployees(); //return Employees list object
 
+        //set the value of member name_
         void setName(std::string name);
+        
+        //set the value of member cnpj_
         void setCNPJ(std::string cnpj);
 
+        //Count the amount of employees in the company (local)  
         static float employeePerCompanyAvg();
 
+        //Overload inserction (<<) into stream to print all employees and Company data  
         friend std::ostream & operator << (std::ostream &stream, Company& company);
 
 };

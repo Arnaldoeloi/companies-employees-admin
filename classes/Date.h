@@ -33,8 +33,9 @@ class Date{
         Date operator ++(int);
         Date operator --();
         Date operator --(int);
-        Date operator - (int days);
+        Date operator - (int);
 };
+
 
 bool operator == (const Date&, const Date&);
 bool operator != (const Date&, const Date&);

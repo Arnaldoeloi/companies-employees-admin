@@ -16,9 +16,20 @@ Company::~Company(){
 };
 
 void Company::employ(Employee& e){
-    Employee::N_EMPLOYEES--; //workaround to couting duplicated Employees on employ
-    employees_.push_back(e);
-    n_employees_++;
+    bool found=false; //identify if the employee is or not alrealdy an employee
+    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+        if(e == *ptr){
+            found=true;
+            break;
+        }
+    }
+    if(!found){
+        Employee::N_EMPLOYEES--; //To be counted as one, an Employee need to be hired first
+        employees_.push_back(e);
+        n_employees_++;
+    }else{
+        std::cout<<e.getName()<<" is already employed."<<std::endl;
+    }
 };
 
 void Company::fire(Employee e){
@@ -44,19 +55,27 @@ void Company::listAllEmployees(){
 }
 
 void Company::listNewPersonnel(){
-    for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
-        if(ptr->getAdmissionDate()<ptr->getAdmissionDate()-90){
-            std::cout<<*ptr<<std::endl;
-        }
-    }
+    time_t todayTime = time(NULL);
+	tm* timePtr = localtime(&todayTime);
+
+    Date now;
+
+    now.set_year(timePtr->tm_year+1900); //it is necessary to sum up 1900 to get current date
+    now.set_month(timePtr->tm_mon+1);    //tm_mon starts at 0, so to get the current month we sum 1, since we don't have a month 0 
+    now.set_day(timePtr->tm_mday);       //tm_mday returns the day of the month
+
+    std::cout<<now<<std::endl;
+    std::cout<<now-90<<std::endl;
+    
+    // for(std::list<Employee>::iterator ptr = employees_.begin(); ptr != employees_.end(); ptr++){
+    //     if(ptr->getAdmissionDate() > (now - 90)){
+    //         std::cout<<*ptr<<std::endl;
+    //     }
+    // }
 }
 
 int Company::getNumberOfEmployees(){
     return n_employees_;
-}
-
-int Company::countPersonnel(){
-    return employees_.size();
 }
 
 std::string Company::getName(){
@@ -92,6 +111,10 @@ std::ostream & operator << (std::ostream &stream, Company& company){
     stream<<company.getCNPJ()<<std::endl;
     stream<<"Number of employees: ";
     stream<<company.getNumberOfEmployees()<<std::endl;
+    stream<<"========||========||========"<<std::endl;
+    stream<<"Employees:"<<std::endl<<std::endl;
+    company.listAllEmployees();
+    stream<<"====//====//===="<<std::endl<<std::endl;
     return stream;
 }
 

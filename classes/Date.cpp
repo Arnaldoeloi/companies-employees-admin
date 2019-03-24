@@ -3,18 +3,19 @@
 
 #include "Date.h"
 
-Date::Date(const int& d, const int& m, const int& y){
-    day_    =   d;
-    month_  =   m;
-    year_   =   y;
-}
 /*
 Small adition to Oedegaard class: copy constructor
 */
 Date::Date(Date& date){
-    day_ = date.day_;
-    month_ = date.month_;
-    year_ = date.year_;
+    day_ = date.day();
+    month_ = date.month();
+    year_ = date.year();
+}
+
+Date::Date(const int& d, const int& m, const int& y){
+    day_    =   d;
+    month_  =   m;
+    year_   =   y;
 }
 
 Date::Date(){
@@ -127,8 +128,11 @@ inline Date previous_date(const Date& d){
 
 Date Date::operator-(int days){
     Date auxDate;
+    auxDate.set_year((*this).year());
+    auxDate.set_month((*this).month());
+    auxDate.set_day((*this).day());
     for(int i=0; i<days; i++){
-        auxDate=previous_date(*this);
+        auxDate--;
     }
     return auxDate;
 }
